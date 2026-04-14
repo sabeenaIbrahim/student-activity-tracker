@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#22d3ee">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="ActivityTracker">
+    <title>Student Profile</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" href="favicon.ico" sizes="any">
+    <link rel="apple-touch-icon" href="images/icon-192.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body data-page="profile">
+    <header class="site-header">
+        <div class="header-top">
+            <div class="brand-block">
+                <h1>Student Profile</h1>
+                <p class="hero-text">
+                    Save academic details that can be reused for search, notes, and future features.
+                </p>
+            </div>
+
+            <div class="menu-wrap">
+                <button
+                    id="menuButton"
+                    class="menu-button"
+                    type="button"
+                    aria-label="Open menu"
+                    aria-expanded="false"
+                    aria-controls="appMenu"
+                >
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+
+                <div id="appMenu" class="menu-panel" hidden>
+                    <button type="button" data-menu-action="profile">Profile</button>
+                    <button type="button" data-menu-action="updates">Check for Updates</button>
+                    <button type="button" data-menu-action="backup">Backup Data</button>
+                    <button type="button" data-menu-action="import">Import Data</button>
+                    <button type="button" data-menu-action="dark-mode">Toggle Dark Mode</button>
+                    <button type="button" data-menu-action="about">About</button>
+                </div>
+            </div>
+        </div>
+
+        <nav class="top-nav" aria-label="Main navigation">
+            <a class="nav-link" href="index.html">Dashboard</a>
+            <a class="nav-link" href="activities.html">Activities</a>
+            <a class="nav-link active" href="profile.html">Profile</a>
+        </nav>
+    </header>
+
+    <main class="page-shell">
+        <section class="panel">
+            <div class="panel-header">
+                <div>
+                    <p class="section-label">Profile</p>
+                    <h2>Student Details</h2>
+                </div>
+            </div>
+
+            <form id="profileForm" class="profile-grid">
+                <div class="field-group">
+                    <label for="studentName">Student Name</label>
+                    <input id="studentName" name="studentName" type="text" maxlength="80">
+                </div>
+
+                <div class="field-group">
+                    <label for="studentClass">Class</label>
+                    <input id="studentClass" name="studentClass" type="text" maxlength="40">
+                </div>
+
+                <div class="field-group">
+                    <label for="department">Department</label>
+                    <input id="department" name="department" type="text" maxlength="80">
+                </div>
+
+                <div class="field-group">
+                    <label for="schoolCollegeName">School / College Name</label>
+                    <input id="schoolCollegeName" name="schoolCollegeName" type="text" maxlength="120">
+                </div>
+
+                <div class="field-group">
+                    <label for="universityName">University Name</label>
+                    <input id="universityName" name="universityName" type="text" maxlength="120">
+                </div>
+
+                <div class="field-group">
+                    <label for="academicYear">Academic Year</label>
+                    <input id="academicYear" name="academicYear" type="text" maxlength="40" placeholder="2026-2027">
+                </div>
+
+                <div class="field-group">
+                    <label for="semester">Semester</label>
+                    <input id="semester" name="semester" type="text" maxlength="20" placeholder="Semester 3">
+                </div>
+
+                <div class="field-group">
+                    <label for="phoneNumber">Phone Number</label>
+                    <input id="phoneNumber" name="phoneNumber" type="tel" maxlength="20">
+                </div>
+
+                <div class="field-group">
+                    <label for="emailAddress">Email Address</label>
+                    <input id="emailAddress" name="emailAddress" type="email" maxlength="120">
+                </div>
+
+                <div class="field-group profile-span">
+                    <label for="profileNotes">Additional Notes</label>
+                    <textarea id="profileNotes" name="profileNotes" rows="5" placeholder="Optional student details for future use"></textarea>
+                </div>
+
+                <div class="profile-actions profile-span">
+                    <button class="primary-button" type="submit">Save Profile</button>
+                </div>
+            </form>
+        </section>
+    </main>
+
+    <dialog id="aboutDialog" class="about-dialog">
+        <div class="about-card">
+            <div class="about-header">
+                <h2>About</h2>
+                <button id="closeAboutButton" class="secondary-button" type="button">Close</button>
+            </div>
+            <p>Student Activity Tracker is a simple offline-friendly study activity manager with backup and restore support created by <b>Sabeena Ibrahim</b> with the help of ChatGPT and Stack Overflow friends.</p>
+        </div>
+    </dialog>
+
+    <input id="importInput" type="file" accept="application/json" hidden>
+
+    <script src="script.js"></script>
+</body>
+</html>

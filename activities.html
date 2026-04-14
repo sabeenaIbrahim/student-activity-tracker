@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#22d3ee">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="ActivityTracker">
+    <title>Activity List</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" href="favicon.ico" sizes="any">
+    <link rel="apple-touch-icon" href="images/icon-192.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body data-page="activities">
+    <header class="site-header">
+        <div class="header-top">
+            <div class="brand-block">
+                <h1>My Activities</h1>
+                <p class="hero-text">
+                    Add, complete, and manage activities with live progress tracking here.
+                </p>
+            </div>
+
+            <div class="menu-wrap">
+                <button
+                    id="menuButton"
+                    class="menu-button"
+                    type="button"
+                    aria-label="Open menu"
+                    aria-expanded="false"
+                    aria-controls="appMenu"
+                >
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+
+                <div id="appMenu" class="menu-panel" hidden>
+                    <button type="button" data-menu-action="profile">Profile</button>
+                    <button type="button" data-menu-action="updates">Check for Updates</button>
+                    <button type="button" data-menu-action="backup">Backup Data</button>
+                    <button type="button" data-menu-action="import">Import Data</button>
+                    <button type="button" data-menu-action="dark-mode">Toggle Dark Mode</button>
+                    <button type="button" data-menu-action="about">About</button>
+                </div>
+            </div>
+        </div>
+
+        <nav class="top-nav" aria-label="Main navigation">
+            <a class="nav-link" href="index.html">Dashboard</a>
+            <a class="nav-link active" href="activities.html">Activities</a>
+            <a class="nav-link" href="profile.html">Profile</a>
+        </nav>
+    </header>
+
+    <main class="page-shell">
+        <section class="panel">
+            <div class="panel-header">
+                <div>
+                    <p class="section-label">Progress Summary</p>
+                    <h2 id="progressHeading">Track your completion</h2>
+                    <p id="progressText" class="muted-text">0 out of 0 activities completed</p>
+                </div>
+
+                <div class="panel-actions">
+                    <button id="resetButton" class="secondary-button" type="button">Reset Sample Data</button>
+                    <button id="clearButton" class="ghost-button" type="button">Clear All</button>
+                </div>
+            </div>
+
+            <div class="progress-bar" aria-label="Completion progress">
+                <div id="progressFill" class="progress-fill"></div>
+            </div>
+        </section>
+
+        <section class="panel add-panel">
+            <button
+                id="activityComposerToggle"
+                class="activity-composer-toggle"
+                type="button"
+                aria-expanded="false"
+                aria-controls="activityComposerPanel"
+            >
+                <span class="composer-plus" aria-hidden="true">+</span>
+                <span>
+                    <span class="composer-title">Add Activity</span>
+                    <span class="composer-subtitle">Create new task</span>
+                </span>
+            </button>
+
+            <div id="activityComposerPanel" class="activity-composer-panel" hidden>
+                <form id="activityForm" class="activity-form">
+                    <div class="field-group">
+                        <label for="activityTitle">Activity Name</label>
+                        <input id="activityTitle" name="activityTitle" type="text" maxlength="60" placeholder="Enter activity title" required>
+                    </div>
+
+                    <div class="field-group">
+                        <label for="activityDescription">Short Description</label>
+                        <textarea id="activityDescription" name="activityDescription" rows="3" maxlength="180" placeholder="Enter a short description" required></textarea>
+                    </div>
+
+                    <label class="priority-toggle" for="activityPriority">
+                        <input id="activityPriority" name="activityPriority" type="checkbox">
+                        <span class="priority-toggle-ui" aria-hidden="true"></span>
+                        <span>Priority</span>
+                    </label>
+
+                    <button class="primary-button" type="submit">Add Activity</button>
+                </form>
+            </div>
+        </section>
+
+        <section class="panel">
+            <div class="panel-header">
+                <div>
+                    <p class="section-label">Activity List</p>
+                    <h2>Current activities</h2>
+                </div>
+            </div>
+
+            <div id="activityList" class="activity-list" aria-live="polite"></div>
+            <div id="emptyState" class="empty-state" hidden></div>
+        </section>
+    </main>
+
+    <dialog id="aboutDialog" class="about-dialog">
+        <div class="about-card">
+            <div class="about-header">
+                <h2>About</h2>
+                <button id="closeAboutButton" class="secondary-button" type="button">Close</button>
+            </div>
+            <p>Student Activity Tracker is a simple offline-friendly study activity manager with backup and restore support created by <b>Sabeena Ibrahim</b> with the help of ChatGPT and Stack Overflow friends.</p>
+        </div>
+    </dialog>
+
+    <dialog id="activityDetailDialog" class="detail-dialog">
+        <div class="detail-card">
+            <div class="about-header">
+                <div>
+                    <p class="section-label">Activity</p>
+                    <h2 id="detailTitle">Activity</h2>
+                </div>
+                <button id="closeDetailButton" class="secondary-button" type="button">Close</button>
+            </div>
+
+            <p id="detailDescription" class="muted-text"></p>
+
+            <div class="detail-meta">
+                <span id="detailStatusBadge" class="status-badge pending">Pending</span>
+                <span id="detailPriorityBadge" class="status-badge priority" hidden>Priority</span>
+            </div>
+
+            <div class="field-group">
+                <label for="activityNotes">Study Details</label>
+                <textarea
+                    id="activityNotes"
+                    rows="10"
+                    placeholder="Add syllabus, question banks, study materials, notes, or any extra details here."
+                ></textarea>
+            </div>
+
+            <div class="detail-actions">
+                <button id="saveNotesButton" class="primary-button" type="button">Save Details</button>
+                <a id="googleSearchButton" class="resource-button icon-only-button" href="#" target="_blank" rel="noopener noreferrer" aria-label="Search in Google">
+                    <img src="images/Google.png" alt="Google" class="resource-logo">
+                </a>
+                <a id="chatgptButton" class="resource-button icon-only-button" href="#" target="_blank" rel="noopener noreferrer" aria-label="Open in ChatGPT">
+                    <img src="images/ChatGPT.png" alt="ChatGPT" class="resource-logo">
+                </a>
+                <button id="openEditButton" class="secondary-button" type="button">Edit Activity</button>
+            </div>
+        </div>
+    </dialog>
+
+    <dialog id="editActivityDialog" class="detail-dialog">
+        <form id="editActivityForm" class="detail-card" method="dialog">
+            <div class="about-header">
+                <div>
+                    <p class="section-label">Edit</p>
+                    <h2>Edit Activity</h2>
+                </div>
+                <button id="closeEditButton" class="secondary-button" type="button">Close</button>
+            </div>
+
+            <input id="editActivityId" type="hidden">
+
+            <div class="field-group">
+                <label for="editActivityTitle">Activity Name</label>
+                <input id="editActivityTitle" type="text" maxlength="60" required>
+            </div>
+
+            <div class="field-group">
+                <label for="editActivityDescription">Short Description</label>
+                <textarea id="editActivityDescription" rows="4" maxlength="220" required></textarea>
+            </div>
+
+            <label class="priority-toggle" for="editActivityPriority">
+                <input id="editActivityPriority" type="checkbox">
+                <span class="priority-toggle-ui" aria-hidden="true"></span>
+                <span>Priority</span>
+            </label>
+
+            <div class="detail-actions">
+                <button class="primary-button" type="submit">Save Changes</button>
+            </div>
+        </form>
+    </dialog>
+
+    <input id="importInput" type="file" accept="application/json" hidden>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#22d3ee">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="ActivityTracker">
+    <title>Student Activity Tracker</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" href="favicon.ico" sizes="any">
+    <link rel="apple-touch-icon" href="images/icon-192.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body data-page="dashboard">
+    <header class="site-header">
+        <div class="header-top">
+            <div class="brand-block">
+                <h1>Student Activity Tracker</h1>
+                <p class="hero-text">
+                    Track activities, update progress instantly, and keep the completion status saved in the browser.
+                </p>
+            </div>
+
+            <div class="menu-wrap">
+                <button
+                    id="menuButton"
+                    class="menu-button"
+                    type="button"
+                    aria-label="Open menu"
+                    aria-expanded="false"
+                    aria-controls="appMenu"
+                >
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+
+                <div id="appMenu" class="menu-panel" hidden>
+                    <button type="button" data-menu-action="profile">Profile</button>
+                    <button type="button" data-menu-action="updates">Check for Updates</button>
+                    <button type="button" data-menu-action="backup">Backup Data</button>
+                    <button type="button" data-menu-action="import">Import Data</button>
+                    <button type="button" data-menu-action="dark-mode">Toggle Dark Mode</button>
+                    <button type="button" data-menu-action="about">About</button>
+                </div>
+            </div>
+        </div>
+
+        <nav class="top-nav" aria-label="Main navigation">
+            <a class="nav-link active" href="index.html">Dashboard</a>
+            <a class="nav-link" href="activities.html">Activities</a>
+            <a class="nav-link" href="profile.html">Profile</a>
+        </nav>
+    </header>
+
+    <main class="page-shell">
+        <section class="hero-card">
+            <div>
+                <p class="section-label">Progress Overview</p>
+                <h2 id="dashboardHeadline">Keep moving through your activities</h2>
+                <p id="dashboardMessage" class="muted-text">
+                    tracker updates automatically whenever an activity is marked completed.
+                </p>
+            </div>
+
+            <div class="hero-progress">
+                <div class="progress-ring" aria-hidden="true">
+                    <span id="dashboardPercent">0%</span>
+                </div>
+                <p id="dashboardSummary" class="summary-pill">0 out of 0 activities completed</p>
+            </div>
+        </section>
+
+        <section class="stats-grid" aria-label="Activity summary">
+            <article class="stat-card">
+                <p class="stat-label">Total Activities</p>
+                <p id="totalCount" class="stat-value">0</p>
+            </article>
+
+            <article class="stat-card">
+                <p class="stat-label">Completed</p>
+                <p id="completedCount" class="stat-value">0</p>
+            </article>
+
+            <article class="stat-card">
+                <p class="stat-label">Pending</p>
+                <p id="pendingCount" class="stat-value">0</p>
+            </article>
+        </section>
+
+        <section class="panel">
+            <div class="panel-header">
+                <div>
+                    <p class="section-label">Quick View</p>
+                    <h2>How the tracker works</h2>
+                </div>
+                <a class="primary-button" href="activities.html">Open Activity List</a>
+            </div>
+
+            <div class="feature-grid">
+                <article class="feature-card">
+                    <h3>Stored with localStorage</h3>
+                    <p>Your activity data stays saved in the browser even after refreshing the page.</p>
+                </article>
+
+                <article class="feature-card">
+                    <h3>Instant status updates</h3>
+                    <p>Mark any activity as completed and the UI refreshes immediately without page reload.</p>
+                </article>
+
+                <article class="feature-card">
+                    <h3>Clear progress summary</h3>
+                    <p>The dashboard and activity page both show how many tasks are finished out of the total.</p>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <dialog id="aboutDialog" class="about-dialog">
+        <div class="about-card">
+            <div class="about-header">
+                <h2>About</h2>
+                <button id="closeAboutButton" class="secondary-button" type="button">Close</button>
+            </div>
+            <p>Student Activity Tracker is a simple offline-friendly study activity manager with backup and restore support created by <b>Sabeena Ibrahim</b> with the help of ChatGPT and Stack Overflow friends.</p>
+        </div>
+    </dialog>
+
+    <input id="importInput" type="file" accept="application/json" hidden>
+
+    <script src="script.js"></script>
+</body>
+</html>
