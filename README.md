@@ -1,36 +1,54 @@
-# Student Activity Tracker
+# Study Progress Tracker PWA
 
-Browser-based study tracker for students with activity management, reusable profile details, backup support, and offline-ready PWA behavior.
+A clean and installable Progressive Web App built for personal study tracking and academic productivity.
+
+Originally started as a Level-1 Hackathon project and later evolved into a real-world study companion with Level-2 interactivity enhancements.
 
 ## Features
 
-- Dashboard, activities view, and a dedicated student profile page
-- Profile fields for student name, class, department, institution, university, academic year, semester, phone number, email, and extra notes
-- Add, complete, prioritize, edit, and delete activities
-- Click any activity card to open a study details popup with unlimited notes
-- Google and ChatGPT quick actions generated from the activity plus saved academic profile context
-- Priority activities stay at the top until they are completed
-- Completed activities move to the bottom with a smooth in-page animation
-- Dark mode, backup, import, about dialog, and manual update check
-- LocalStorage-based persistence with PWA support
+- Add, edit, and delete study activities
+- Mark tasks as completed / pending
+- Real-time progress tracking
+- Progress bar and summary
+- Backup data as JSON
+- Import previous data
+- Dark mode support
+- Check for updates
+- Offline support
+- Installable as mobile app (PWA)
 
-## How To Use
-
-1. Open `Profile` and save the student details you want reused in search and study prompts.
-2. Open `Activities` to add a task with title, description, and optional priority.
-3. Click an activity card to add detailed notes, open Google references, or send a study prompt to ChatGPT.
-4. Use the bottom action buttons on each activity to prioritize, complete, edit, or delete it.
-
-## Backup And Restore
-
-- Use `Backup Data` from the menu to download activities and profile data as JSON.
-- Use `Import Data` to restore a previous backup, including saved student profile details.
-
-## Tech Stack
+## Built With
 
 - HTML
 - CSS
 - JavaScript
-- localStorage
 - Service Worker
+- localStorage
 - Web App Manifest
+
+## PWA Support
+
+Install directly on mobile or desktop for app-like usage.
+
+Supports:
+- offline mode
+- home screen install
+- cached assets
+- update detection
+
+## Data Safety
+
+Includes:
+- backup export
+- import restore
+- local persistence
+
+## Purpose
+
+This project was initially created for Hackathon Level-1 submission.
+
+After submission, it was further developed for personal academic usage and later polished to meet Level-2 interactive requirements.
+
+## Author
+
+Sabeena Ibrahim
