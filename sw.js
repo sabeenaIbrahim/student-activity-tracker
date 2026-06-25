@@ -1,4 +1,4 @@
-const CACHE_NAME = "activity-tracker-v1.1";
+const CACHE_NAME = "activity-tracker-v1.2";
 const urlsToCache = [
     "./",
     "./index.html",
