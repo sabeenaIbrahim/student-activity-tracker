@@ -17,7 +17,7 @@
 
 body.dark-mode {
     --bg-main: #101822;
-    --bg-panel: rgba(17, 24, 39, 0.88);
+    --bg-panel: rgba(6, 9, 12, 1);
     --line-soft: rgba(148, 163, 184, 0.18);
     --text-main: #e5edf6;
     --text-muted: #9aa8ba;
